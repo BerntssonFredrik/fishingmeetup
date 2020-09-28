@@ -1,8 +1,5 @@
 FROM node:12
 
-ENV DB_USER "fredrikberntsson"
-ENV DB_PASSWORD "fredrikberntsson"
-ENV PORT "8080"
 
 
 WORKDIR /app
