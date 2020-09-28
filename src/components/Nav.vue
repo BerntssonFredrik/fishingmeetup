@@ -1,27 +1,30 @@
 <template>
 <div class="wapper_Nav">
-  <button class="navButton"> Log in</button>
-  <button class="navButton"> Sign up</button>
+  <button class="navButton" @click="showEvent"> Home</button>
+ 
   </div>
 </template>
 
 <script>
 export default {
 
+methods: {
+  showEvent(){
+    this.$router.push("/")
+  }
+}
 }
 </script>
 
 <style lang="scss" >
  @import "@/assets/scss/buttons";
  @import "@/assets/scss/variables";
-.wrapper {
-
+.wapper_Nav {
+width: 100vw;
   button {
-    width: 4rem;
-    height: 2rem;
+    width: 5rem !important;
     margin: 1rem ;
     @include buttons
-  
 }
 
 }

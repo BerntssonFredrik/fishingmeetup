@@ -1,33 +1,52 @@
 <template>
   <div class="wrapper_fishingEvent">
+    <Nav class="nav" />
     <section class="main">
-      <div class="top">
+      
         <div class="info">
+          <div class="event">
           <img :src="event.imgUrl" alt="" class="fishImg" />
           <div class="infoText">
-            <h1 class="infoText">{{ event.fish }}</h1>
-            <h1 class="infoText">{{ event.date }}</h1>
-            <h1 class="infoText">{{ event.time }}</h1>
-            <h3 class="infoText">{{ event.info }}</h3>
-
+            <h1 class="">{{ event.fish }}</h1>
+            <h1 class="">{{ event.date }}</h1>
+            <h1 class="">{{ event.time }}</h1>
+            <h3 class="">{{ event.info }}</h3>
+            
             <button @click="showAddAttandee" class="joinButton">Gå med</button>
-            <AddAttendee
+             
+            </div>
+           <AddAttendee
               @addAttendee="addAttendee"
               v-show="addAttandee"
+              class="addAttandee"
             />
           </div>
-        </div>
-
+        <section class="attendees">
+        <li
+          v-for="(attendees, index) in event.attendees"
+          :key="index"
+          class="attendee"
+        >
+          <img src="../assets/img/profile-user.png" alt="" class="userImg" />
+          <p class="attendeeName">{{ attendees.name }}</p>
+        </li>
+      </section>
+</div>
         <section class="comment">
-          <h1>Kommentarer</h1>
+          <h1>Kommentarer:</h1>
+          <div class="commentsLi">
           <li
             v-for="(comments, index) in event.comments"
             :key="index"
             class="comments"
           >
+          <div class="oldComments">
             <p class="commentName">{{ comments.name }}</p>
-            <p>{{ comments.comment }}</p>
+            <p class="newComment">{{ comments.comment }}</p>
+            </div>
+           
           </li>
+           </div>
           <button @click="showLeaveComment" class="commentButton">
             Lämna kommentar
           </button>
@@ -50,23 +69,16 @@
             <button @click="addComment" class="joinButton">Skicka kommentar</button>
           </section>
         </section>
-      </div>
-      <section class="attendees">
-        <li
-          v-for="(attendees, index) in event.attendees"
-          :key="index"
-          class="attendee"
-        >
-          <img src="../assets/img/profile-user.png" alt="" class="userImg" />
-          <p>{{ attendees.name }}</p>
-        </li>
-      </section>
+      
+           
+     
     </section>
   </div>
 </template>
 
 <script>
 import AddAttendee from "@/components/AddAttendee";
+import Nav from "@/components/Nav";
 export default {
   data() {
     return {
@@ -79,7 +91,7 @@ export default {
     };
   },
   name: "FishingEvent",
-  components: { AddAttendee },
+  components: { AddAttendee, Nav },
   computed: {
     event() {
      
@@ -125,48 +137,64 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-
+  width: 100vw;
 }
+.nav {
+  position: absolute;
+  top: 0;
+  left:0;
+
+ }
 .main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: $dark;
   padding: 2rem;
   border-radius: 6px;
-max-height: min-content;
+
 box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+height: 80vh;
 }
 .top {
   display: flex;
-
+}
+.event {
+  display: flex;
 }
 .fishImg {
-  height: 15rem;
+  height: 18rem;
   width: 25rem;
   margin-right: 2rem;
   border-radius: 6px;
 }
-.infoText {
-  margin-top: 1rem;
+.infoText  {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 18rem;
+  width: 20rem;
+
 }
 .info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
+  justify-content: space-between;
   color: white;
 }
 .joinButton {
   width: 15rem;
-  background-color: white;
+  background-color: $orange;
   color: $dark;
   margin-top: 1rem;
+
 }
 .comment {
   display: flex;
   flex-direction: column;
   margin-left: 5rem;
    position: relative;
+ 
   h1 {
     color: white;
     
@@ -179,29 +207,62 @@ box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
   display: flex;
   flex-direction: column;
   background-color: white;
-  margin-top: 0.2rem;
- 
+  color: $dark;
+  margin: 0.3rem 0.3rem 0 0;
+}
+.commentsLi {
+  overflow: auto;
+  overflow-x: hidden;
+  height: 25rem;
+}
+.commentsLi::-webkit-scrollbar {
+  background: $orange;
+  border-radius: 6px;
+}
+.commentsLi::-webkit-scrollbar-thumb {
+  background: $darkOrange;
+  border-radius: 6px;
 }
 .commentButton {
   width: 15rem;
-  background-color: white;
+  background-color: $orange;
   color: $dark;
   margin-top: 1rem;
 }
 .commentName {
   text-decoration: underline;
   margin-bottom: 0.2rem;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.newComment {
+  width: 100%;
+  word-break: break-word;
 }
 label {
 color: white;
 }
 .attendees {
   display: flex;
-  margin: 1rem;
-  margin-top: 10rem;
+  margin-top: 5rem;
+    width: 40rem;
+     overflow: auto;
+  overflow-y: hidden;
+   padding-bottom: 1rem;
+
+}
+.attendees::-webkit-scrollbar {
+  background: $orange;
+  border-radius: 6px;
+}
+.attendees::-webkit-scrollbar-thumb {
+  background: $darkOrange;
+  border-radius: 6px;
 }
 .attendee {
-  width: 8rem;
+ min-width: 8rem ;
+ max-width: 8rem;
   height: 6rem;
   background-color: white;
   display: flex;
@@ -209,7 +270,15 @@ color: white;
   align-items: center;
   justify-content: space-around;
   margin: 0 0.5rem;
-  
+}
+.addAttandee{
+  position: absolute;
+  width: 15rem;
+  top: 27rem;
+  right: 40rem;
+}
+.attendeeName {
+  color: $dark;
 }
   .userImg {
     height: 3rem;
@@ -219,6 +288,7 @@ color: white;
     display: flex;
     flex-direction: column;
     width: 15rem;
+    
   }
 .commentInput {
 border-radius: 6px;

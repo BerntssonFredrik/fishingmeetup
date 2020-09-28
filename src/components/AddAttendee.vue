@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper_AddAttendee">
-    <label for="attendeeName">Namn:</label>
-    <input type="text" id="attendeeName" v-model="newAttendee.attendeeName" />
+    <label for="attendeeName">Förnamn:</label>
+    <input type="text" id="attendeeName" v-model="newAttendee.attendeeName" maxlength="12" />
     <label for="attendeeNr">Telefonnummer:</label>
     <input type="text" id="attendeeNr" v-model="newAttendee.attendeeNr" />
     <button class="joinButton" @click="addAttendee">Join</button>
@@ -36,9 +36,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/scss/variables";
+
 .wrapper_AddAttendee {
-  position: absolute;
   display: flex;
   flex-direction: column;
 }
@@ -49,7 +50,7 @@ input {
   padding: 0.2rem;
 }
 .joinButton {
-  background-color: white;
+  background-color: $orange;
   height: 2rem;
   color: black;
   margin-top: 0.5rem;

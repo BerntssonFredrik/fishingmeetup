@@ -13,7 +13,7 @@ export default {
 <style lang="scss" >
 @import "@/assets/scss/variables";
 @import "@/assets/scss/buttons";
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap" );
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap" );
 * {
     padding: 0;
     margin: 0;
