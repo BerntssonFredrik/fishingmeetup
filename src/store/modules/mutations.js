@@ -2,7 +2,7 @@ export default{
 
 
     getEvents(state, eventList) {
-        state.eventList = [...eventList]
+        state.eventList = eventList
     },
     getEvent(state, event) {
      

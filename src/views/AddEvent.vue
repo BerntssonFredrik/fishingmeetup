@@ -29,7 +29,7 @@
         </li>
         <li class="eventLi">
           <label for="info">Information:</label>
-          <input type="text" class="comment" id="info" v-model="input.info" />
+          <input type="text" class="info" id="info" v-model="input.info" maxlength="100"/>
         </li>
       </ul>
 
@@ -110,18 +110,18 @@ export default {
     border: none;
     outline: none;
     height: 2rem;
-    border-bottom: 1px solid white;
-    border-radius: 6px;
+    border-bottom: 1px solid $orange;
+    border-radius: 2px;
   }
 }
 .addButton {
   height: 2rem;
   margin: 2rem;
   width: 10rem;
-  background-color: white;
-  color: $dark;
+  background-color: $orange;
+  color: white;
 }
-.comment {
+.info {
   height: 3rem;
 }
 </style>

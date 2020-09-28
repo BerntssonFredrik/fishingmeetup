@@ -52,19 +52,12 @@ export default {
   },
 
   async addComment({dispatch}, data) {
-    const url = "http://localhost:8080/event/addComment/" + data.id;
-    fetch(url, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data.comment),
+    const url = "/event/addComment/" + data.id;
+    await axios
+    .post(url, data.comment)
+    .then((response) => {
+      dispatch("getEvent", response.data.id)
     })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch("getEvent", data.id);
-      })
       .catch((error) => {
         console.error("Error:", error);
       });

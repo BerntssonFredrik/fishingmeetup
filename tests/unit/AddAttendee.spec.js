@@ -1,7 +1,7 @@
 import { shallowMount } from "@vue/test-utils"
 import AddAttendee from "@/components/AddAttendee"
 
-it("should emit addAttendee with the correct value", async () => {
+it("should emit addAttendee whit correct params if all inputs are valid", async () => {
     
     const wrapper = shallowMount(AddAttendee)
 
@@ -14,6 +14,16 @@ it("should emit addAttendee with the correct value", async () => {
     await button.trigger("click") 
 
     wrapper.vm.addAttendee()
-    console.log(wrapper.emitted())
     expect(wrapper.emitted().addAttendee[0]).toEqual([{"attendeeName": "Fredrik Berntsson",  "attendeeNr": "123"}])
 })
+
+/* it("should not emit addAttendee if inputs are empty", async () => {
+    
+    const wrapper = shallowMount(AddAttendee)
+    const button = wrapper.find("button")
+
+    await button.trigger("click") 
+
+    wrapper.vm.addAttendee()
+    expect(wrapper.emitted().addAttendee[0]).not.toHaveBeenCalled()
+}) */

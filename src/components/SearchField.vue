@@ -30,12 +30,13 @@ methods: {
     this.filteredList = allEvents.filter((item) => {
       if(item.fish.toLowerCase().includes(this.fishSearch.toLowerCase()) &&
       item.location.toLowerCase().includes(this.locationSearch.toLowerCase()))
-      
+   
        return item
      
   })
 
 this.$emit("filteredEvents", this.filteredList);
+   document.querySelector(".seeEvent").scrollIntoView({behavior: "smooth"});
 }
 
 }
@@ -55,20 +56,22 @@ this.$emit("filteredEvents", this.filteredList);
 
 input{
   margin: 0 1rem;
-  height: 2rem;
+
   border-radius: 6px;
   outline: none;
   border: none;
   padding-left: 2rem;
   background-color: $dark;
   color: white;
-  width: 10rem;
+  width: 15rem;
+  font-size: 16px;
+  height: 50px;
 }
 .Search,
 .addEvent{
-  height: 2rem;
+
   margin: 0 1rem;
-  width: 10rem;
+  width: 15rem;
   @include buttons
 }
 }

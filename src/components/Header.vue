@@ -31,6 +31,7 @@ methods: {
 
 .wrapper {
   height: 100vh;
+  width: 100vw;
    
 
     .header {
@@ -39,23 +40,26 @@ methods: {
          margin-top: 2rem;
         height: 80vh;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
         
-
         .text{
-            width: 60rem;
+            width: 55%;
             text-align: center;
             color: white;
             line-break: auto;
             letter-spacing: 2px;
-          
+            margin-top:-20em;
 
             h1 {
                 font-size: 72px;
                 margin-bottom: 0.5rem;
+             
+                font-weight: 900;
             }
             p{
-                font-size: 24px;
+                font-size: 30px;
+                font-weight: 500;
+               
             }
 
             button {
