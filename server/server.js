@@ -12,6 +12,7 @@ app.use(cors());
 app.use('/', serveStatic(path.join(__dirname, '../dist')));
 app.use('/event', eventRouter);
 
+
 const port = process.env.PORT || 8080;
 
 mongoose
