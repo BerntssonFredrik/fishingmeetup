@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-      <button @click="testing"></button>
     <Header />
     <AllEvents/>
   </div>
@@ -14,10 +13,7 @@ import AllEvents from "@/components/AllEvents"
 export default {
   name: 'Home',
  components: {  Header, AllEvents},
-  methods:{
-    testing(){
-      this.$store.dispatch("test")
-    }
-  }
+  
+  
 }
 </script>

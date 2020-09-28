@@ -1,20 +1,20 @@
 <template>
-  <div class="wrapper">
-    <SearchField />
-    <AddEvent />
+  <div class="wrapper seeEvent" >
+    <Events />
   </div>
 </template>
 
 <script>
-import SearchField from "@/components/SearchField"
-import AddEvent from "@/components/AddEvent"
+
+
+import Events from "@/components/Events"
+
 export default {
-components: { SearchField, AddEvent}
+components: {   Events},
+
 }
 </script>
 
-<style scoped>
-.wrapper {
-    height: 20vh;
-}
+<style lang="scss" scoped>
+
 </style>
