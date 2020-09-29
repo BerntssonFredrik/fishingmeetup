@@ -1,31 +1,70 @@
-import { shallowMount } from "@vue/test-utils"
-import AddAttendee from "@/components/AddAttendee"
+import { shallowMount } from "@vue/test-utils";
+import AddAttendee from "@/components/AddAttendee";
 
-it("should emit addAttendee whit correct params if all inputs are valid", async () => {
-    
-    const wrapper = shallowMount(AddAttendee)
-
-     let nameInput = wrapper.find("#attendeeName");
-    let nrInput = wrapper.find("#attendeeNr");
-    const button = wrapper.find("button")
-
-    await nameInput.setValue("Fredrik Berntsson");
-    await nrInput.setValue("123");
-    await button.trigger("click") 
-
-    wrapper.vm.addAttendee()
-    expect(wrapper.emitted().addAttendee[0]).toEqual([{"attendeeName": "Fredrik Berntsson",  "attendeeNr": "123"}])
+let event, data;
+beforeEach(() => {
+  (event = {
+    _id: "111",
+    date: "2020-10-30",
+    fish: "Gädda",
+    imgUrl: "lol",
+    info: "Jag har ett extra spö",
+    location: "Delsjön",
+    organizer: "Fredrik Berntsson",
+    time: "11:00",
+    comments: { commentName: "Allan", commentComment: "hej hej" },
+    attendees: { attendeeName: "Allan", AttendeeNr: "123" },
+  }),
+    (data = {
+      attendee: { attendeeName: "Fred", attendeeNr: "123" },
+      id: "111",
+    });
 });
+
+it("Should call addAttendee.", async () => {
+  const mockStore = {
+      dispatch: jest.fn(),
+    },
+    wrapper = shallowMount(AddAttendee, {
+      computed: {
+        event: () => {
+          return event;
+        },
+      },
+      propsData: {
+        eventId: "111",
+      },
+      data() {
+        return {
+          newAttendee: { attendeeName: "Fred", attendeeNr: "123" },
+          addAttandee: true,
+        };
+      },
+      mocks: { $store: mockStore },
+    });
+
+  await wrapper.find(".joinButton").trigger("click");
+  await wrapper.vm.$nextTick();
+  expect(mockStore.dispatch).toHaveBeenCalledWith("addAttendee", data);
+});
+
 it("should not emit addAttendee if inputs are empty", async () => {
-    const mockStore = { dispatch: jest.fn() };
-  const wrapper = shallowMount(AddAttendee, {
-    mocks: { $store: mockStore },
-  });
+  const mockStore = {
+      dispatch: jest.fn(),
+    },
+    wrapper = shallowMount(AddAttendee, {
+      computed: {
+        event: () => {
+          return event;
+        },
+      },
+      propsData: {
+        eventId: "111",
+      },
+      mocks: { $store: mockStore },
+    });
 
-    const button = wrapper.find(".joinButton")
-
-    await button.trigger("click") 
-   
-    expect(mockStore.dispatch).not.toHaveBeenCalledWith('addAttandee');
-
-}) 
+  await wrapper.find(".joinButton").trigger("click");
+  await wrapper.vm.$nextTick();
+  expect(mockStore.dispatch).not.toHaveBeenCalledWith("addAttendee", data);
+});

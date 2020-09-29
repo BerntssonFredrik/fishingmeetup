@@ -13,8 +13,9 @@
           </div>
         </div>
         <button @click="showAddAttandee" class="attendButton">Gå med</button>
-        <AddAttendee
-          @addAttendee="addAttendee"
+         <!-- @addAttendee="addAttendee" -->
+          <AddAttendee
+          :eventId="event._id"
           v-show="addAttandee"
           class="addAttandee"
         />
@@ -47,7 +48,7 @@
           Lämna kommentar
         </button>
 
-        <section class="leaveComment" v-show="leaveComment == true">
+        <section class="leaveComment" v-show="leaveComment">
           <label for="commentName">Namn:</label>
           <input
             type="text"
@@ -62,7 +63,7 @@
             v-model="newComment.commentComment"
             class="commentInput"
           />
-          <button @click="addComment" class="commentButton">
+          <button @click="addComment" id="sendComment" class="commentButton">
             Skicka kommentar
           </button>
         </section>
@@ -93,10 +94,10 @@ export default {
     },
   },
   methods: {
-    addAttendee(attendee) {
+    /* addAttendee(attendee) {
       const data = { attendee: attendee, id: this.event._id };
       this.$store.dispatch("addAttendee", data);
-    },
+    }, */
 
     addComment() {
       const data = { comment: this.newComment, id: this.event._id };
@@ -104,14 +105,13 @@ export default {
         Object.keys(this.newComment).some(
           (key) => this.newComment[key] === ""
         ) === false
-      )
+      ) {
+       
         this.$store.dispatch("addComment", data);
-
-      for (let key in this.newComment) {
-        this.newComment[key] = "";
       }
+      /* for (let key in this.newComment) {
+        this.newComment[key] = ""; */
     },
-
     showAddAttandee() {
       this.addAttandee = !this.addAttandee;
     },
@@ -175,7 +175,6 @@ export default {
 }
 .commentButton,
 .attendButton {
-
   width: 15rem;
   background-color: $orange;
   color: $dark;

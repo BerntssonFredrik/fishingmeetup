@@ -18,6 +18,7 @@ export default {
       },
     };
   },
+  props: {eventId: String},
   methods: {
    addAttendee() {
       if (
@@ -25,7 +26,8 @@ export default {
           (key) => this.newAttendee[key] === ""
         ) === false
       ) {
-         this.$emit("addAttendee", this.newAttendee);
+      const data = { attendee: this.newAttendee, id: this.eventId};
+      this.$store.dispatch("addAttendee", data);
       }
      /*  for (let key in this.newAttendee) {
         this.newAttendee[key] = "";
