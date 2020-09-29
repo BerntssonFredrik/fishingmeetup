@@ -114,7 +114,6 @@ export default {
     },
   },
   created() {
-    console.log(this.$route.params.id)
      this.$store.dispatch("getEvent", this.$route.params.event)
   }
     
