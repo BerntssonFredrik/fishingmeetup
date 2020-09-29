@@ -33,7 +33,7 @@ describe("Events", () => {
       },
     ];
   });
-  it("Should call getAllEvents when created and render all events.", () => {
+  it("Should call getEvents when created and render all events.", () => {
     const mockStore = {
         state: { eventList },
         dispatch: jest.fn(),
