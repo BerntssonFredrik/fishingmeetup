@@ -28,11 +28,10 @@ export default {
       ) {
       const data = { attendee: this.newAttendee, id: this.eventId};
       this.$store.dispatch("addAttendee", data);
+      this.$emit("showAddAttandee")
       }
-     /*  for (let key in this.newAttendee) {
-        this.newAttendee[key] = "";
-      } */
-   
+      console.log("hej")
+      
     },
   },
 };
