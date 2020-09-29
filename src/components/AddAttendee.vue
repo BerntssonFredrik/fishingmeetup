@@ -1,7 +1,12 @@
 <template>
   <div class="wrapper_AddAttendee">
     <label for="attendeeName">Förnamn:</label>
-    <input type="text" id="attendeeName" v-model="newAttendee.attendeeName" maxlength="12" />
+    <input
+      type="text"
+      id="attendeeName"
+      v-model="newAttendee.attendeeName"
+      maxlength="12"
+    />
     <label for="attendeeNr">Telefonnummer:</label>
     <input type="text" id="attendeeNr" v-model="newAttendee.attendeeNr" />
     <button class="joinButton" @click="addAttendee">Join</button>
@@ -18,20 +23,18 @@ export default {
       },
     };
   },
-  props: {eventId: String},
+  props: { eventId: String },
   methods: {
-   addAttendee() {
+    addAttendee() {
       if (
         Object.keys(this.newAttendee).some(
           (key) => this.newAttendee[key] === ""
         ) === false
       ) {
-      const data = { attendee: this.newAttendee, id: this.eventId};
-      this.$store.dispatch("addAttendee", data);
-      this.$emit("showAddAttandee")
+        const data = { attendee: this.newAttendee, id: this.eventId };
+        this.$store.dispatch("addAttendee", data);
+        this.$emit("showAddAttandee");
       }
-      console.log("hej")
-      
     },
   },
 };

@@ -26,6 +26,7 @@ describe("FishingEvent", () => {
     const mockStore = {
         dispatch: jest.fn(),
       },
+      id = "123",
       wrapper = shallowMount(FishingEvent, {
         computed: {
           event: () => {
@@ -38,7 +39,7 @@ describe("FishingEvent", () => {
             leaveComment: true,
           };
         },
-        mocks: { $store: mockStore },
+        mocks: { $store: mockStore, $route: { params: { id } } },
       });
 
     await wrapper.find("#sendComment").trigger("click");
