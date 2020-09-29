@@ -36,7 +36,7 @@ methods: {
   })
 
 this.$emit("filteredEvents", this.filteredList);
-  // document.querySelector(".seeEvent").scrollIntoView({behavior: "smooth"});
+  
 }
 
 }

@@ -13,11 +13,12 @@
           </div>
         </div>
         <button @click="showAddAttandee" class="attendButton">Gå med</button>
-         <!-- @addAttendee="addAttendee" -->
-          <AddAttendee
+        <!-- @addAttendee="addAttendee" -->
+        <AddAttendee
           :eventId="event._id"
           v-show="addAttandee"
           class="addAttandee"
+          @showAddAttandee="showAddAttandee"
         />
         <section class="attendees">
           <li
@@ -94,11 +95,6 @@ export default {
     },
   },
   methods: {
-    /* addAttendee(attendee) {
-      const data = { attendee: attendee, id: this.event._id };
-      this.$store.dispatch("addAttendee", data);
-    }, */
-
     addComment() {
       const data = { comment: this.newComment, id: this.event._id };
       if (
@@ -106,11 +102,9 @@ export default {
           (key) => this.newComment[key] === ""
         ) === false
       ) {
-       
         this.$store.dispatch("addComment", data);
+        this.showLeaveComment()
       }
-      /* for (let key in this.newComment) {
-        this.newComment[key] = ""; */
     },
     showAddAttandee() {
       this.addAttandee = !this.addAttandee;
@@ -119,6 +113,11 @@ export default {
       this.leaveComment = !this.leaveComment;
     },
   },
+  created() {
+     this.$store.dispatch("getEvent", this.$route.params.event)
+  }
+    
+  
 };
 </script>
 
