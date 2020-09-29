@@ -42,18 +42,20 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("getEvents");
+    this.getAllEvents();
   },
   methods: {
     showEvent(id) {
-      this.$store.dispatch("getEvent", id).then(() => {
-        this.$router.push("/FishingEvent/" + id);
-      });
+      this.$store.dispatch("getEvent", id)
+      this.$router.push("/FishingEvent/" + id)
     },
     filteredEvents(event) {
       this.hasFilter = true;
       this.filteredList = event;
     },
+    getAllEvents(){
+      this.$store.dispatch("getEvents");
+    }
   },
 };
 </script>

@@ -2,76 +2,71 @@
   <div class="wrapper_fishingEvent">
     <Nav class="nav" />
     <section class="main">
-      
-        <div class="info">
-          <div class="event">
+      <div class="info">
+        <div class="event">
           <img :src="event.imgUrl" alt="" class="fishImg" />
           <div class="infoText">
             <h1 class="">{{ event.fish }}</h1>
             <h1 class="">{{ event.date }}</h1>
             <h1 class="">{{ event.time }}</h1>
             <h3 class="">{{ event.info }}</h3>
-            
-            <button @click="showAddAttandee" class="joinButton">Gå med</button>
-             
-            </div>
-           <AddAttendee
-              @addAttendee="addAttendee"
-              v-show="addAttandee"
-              class="addAttandee"
-            />
           </div>
+        </div>
+        <button @click="showAddAttandee" class="attendButton">Gå med</button>
+        <AddAttendee
+          @addAttendee="addAttendee"
+          v-show="addAttandee"
+          class="addAttandee"
+        />
         <section class="attendees">
-        <li
-          v-for="(attendees, index) in event.attendees"
-          :key="index"
-          class="attendee"
-        >
-          <img src="../assets/img/profile-user.png" alt="" class="userImg" />
-          <p class="attendeeName">{{ attendees.name }}</p>
-        </li>
-      </section>
-</div>
-        <section class="comment">
-          <h1>Kommentarer:</h1>
-          <div class="commentsLi">
+          <li
+            v-for="(attendees, index) in event.attendees"
+            :key="index"
+            class="attendee"
+          >
+            <img src="../assets/img/profile-user.png" alt="" class="userImg" />
+            <p class="attendeeName">{{ attendees.name }}</p>
+          </li>
+        </section>
+      </div>
+      <section class="comment">
+        <h1>Kommentarer:</h1>
+        <div class="commentsLi">
           <li
             v-for="(comments, index) in event.comments"
             :key="index"
             class="comments"
           >
-          <div class="oldComments">
-            <p class="commentName">{{ comments.name }}</p>
-            <p class="newComment">{{ comments.comment }}</p>
+            <div class="oldComments">
+              <p class="commentName">{{ comments.name }}</p>
+              <p class="newComment">{{ comments.comment }}</p>
             </div>
-           
           </li>
-           </div>
-          <button @click="showLeaveComment" class="commentButton">
-            Lämna kommentar
-          </button>
+        </div>
+        <button @click="showLeaveComment" class="commentButton">
+          Lämna kommentar
+        </button>
 
-          <section class="leaveComment" v-show="leaveComment == true">
-            <label for="commentName">Namn:</label>
-            <input
-              type="text"
-             id="commentName"
-              v-model="newComment.commentName"
-              class="commentInput"
-            />
-            <label for="commentComment">Kommentar:</label>
-            <input
-              type="text"
-              id="commentComment"
-              v-model="newComment.commentComment"
-              class="commentInput"
-            />
-            <button @click="addComment" class="joinButton">Skicka kommentar</button>
-          </section>
+        <section class="leaveComment" v-show="leaveComment == true">
+          <label for="commentName">Namn:</label>
+          <input
+            type="text"
+            id="commentName"
+            v-model="newComment.commentName"
+            class="commentInput"
+          />
+          <label for="commentComment">Kommentar:</label>
+          <input
+            type="text"
+            id="commentComment"
+            v-model="newComment.commentComment"
+            class="commentInput"
+          />
+          <button @click="addComment" class="commentButton">
+            Skicka kommentar
+          </button>
         </section>
-      
-           
-     
+      </section>
     </section>
   </div>
 </template>
@@ -94,9 +89,7 @@ export default {
   components: { AddAttendee, Nav },
   computed: {
     event() {
-     
       return this.$store.state.event;
-      
     },
   },
   methods: {
@@ -104,19 +97,19 @@ export default {
       const data = { attendee: attendee, id: this.event._id };
       this.$store.dispatch("addAttendee", data);
     },
-    
+
     addComment() {
       const data = { comment: this.newComment, id: this.event._id };
-       if (
-        Object.keys(this.newComment).some((key) => this.newComment[key] === "") === false
-      ) 
-      this.$store.dispatch("addComment", data);
-  
-   
-      for(let key in this.newComment) {
-        this.newComment[key] = ""
+      if (
+        Object.keys(this.newComment).some(
+          (key) => this.newComment[key] === ""
+        ) === false
+      )
+        this.$store.dispatch("addComment", data);
+
+      for (let key in this.newComment) {
+        this.newComment[key] = "";
       }
-     
     },
 
     showAddAttandee() {
@@ -142,9 +135,8 @@ export default {
 .nav {
   position: absolute;
   top: 0;
-  left:0;
-
- }
+  left: 0;
+}
 .main {
   display: flex;
   flex-direction: row;
@@ -152,8 +144,8 @@ export default {
   padding: 2rem;
   border-radius: 6px;
 
-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
-height: 80vh;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  height: 80vh;
 }
 .top {
   display: flex;
@@ -167,14 +159,13 @@ height: 80vh;
   margin-right: 2rem;
   border-radius: 6px;
 }
-.infoText  {
+.infoText {
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 18rem;
   width: 20rem;
-
 }
 .info {
   display: flex;
@@ -182,22 +173,22 @@ height: 80vh;
   justify-content: space-between;
   color: white;
 }
-.joinButton {
+.commentButton,
+.attendButton {
+
   width: 15rem;
   background-color: $orange;
   color: $dark;
   margin-top: 1rem;
-
 }
 .comment {
   display: flex;
   flex-direction: column;
   margin-left: 5rem;
-   position: relative;
- 
+  position: relative;
+
   h1 {
     color: white;
-    
   }
 }
 .comments {
@@ -241,16 +232,14 @@ height: 80vh;
   word-break: break-word;
 }
 label {
-color: white;
+  color: white;
 }
 .attendees {
   display: flex;
-  margin-top: 5rem;
-    width: 40rem;
-     overflow: auto;
+  width: 40rem;
+  overflow: auto;
   overflow-y: hidden;
-   padding-bottom: 1rem;
-
+  padding-bottom: 1rem;
 }
 .attendees::-webkit-scrollbar {
   background: $orange;
@@ -261,8 +250,8 @@ color: white;
   border-radius: 6px;
 }
 .attendee {
- min-width: 8rem ;
- max-width: 8rem;
+  min-width: 8rem;
+  max-width: 8rem;
   height: 6rem;
   background-color: white;
   display: flex;
@@ -271,32 +260,28 @@ color: white;
   justify-content: space-around;
   margin: 0 0.5rem;
 }
-.addAttandee{
-  position: absolute;
+.addAttandee {
   width: 15rem;
-  top: 27rem;
-  right: 40rem;
 }
 .attendeeName {
   color: $dark;
 }
-  .userImg {
-    height: 3rem;
-    width: 3rem;
-  }
-  .leaveComment {
-    display: flex;
-    flex-direction: column;
-    width: 15rem;
-    
-  }
-.commentInput {
-border-radius: 6px;
-outline: none;
-border:none;
-padding: 0.2rem;
+.userImg {
+  height: 3rem;
+  width: 3rem;
 }
-#commentComment{
+.leaveComment {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+}
+.commentInput {
+  border-radius: 6px;
+  outline: none;
+  border: none;
+  padding: 0.2rem;
+}
+#commentComment {
   height: 3rem;
 }
 </style>

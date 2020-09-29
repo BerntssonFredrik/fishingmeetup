@@ -19,7 +19,24 @@ export default {
     margin: 0;
     box-sizing: border-box;
     font-weight: 500;
+
+    
   }
+
+    input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  box-shadow: 0 0 0px 1000px $dark inset;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px $dark inset;
+}
   html {
 
 background: url("./assets/img/fishing_.jpg") no-repeat center
@@ -29,6 +46,15 @@ background: url("./assets/img/fishing_.jpg") no-repeat center
   -o-background-size: cover;
   background-size: cover;
   }
+html::-webkit-scrollbar {
+  background: $orange;
+ 
+}
+html::-webkit-scrollbar-thumb {
+  background: $darkOrange;
+  border-radius: 6px;
+}
+
 #app {
 font-family: $font;
 letter-spacing: 1px;
