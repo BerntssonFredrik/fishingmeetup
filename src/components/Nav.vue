@@ -10,7 +10,7 @@ export default {
 
 methods: {
   showEvent(){
-    this.$router.push("/")
+    this.$router.push("/").catch(()=>{});
   }
 }
 }
@@ -20,7 +20,7 @@ methods: {
  @import "@/assets/scss/buttons";
  @import "@/assets/scss/variables";
 .wapper_Nav {
-width: 100vw;
+
   button {
     width: 5rem !important;
     margin: 1rem ;

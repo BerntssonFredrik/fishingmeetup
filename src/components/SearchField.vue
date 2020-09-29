@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper_SearchField">
     <div class="inputs">
-      <input type="text" placeholder="Sök efter fisk" @keyup.enter="setFilter" v-model="fishSearch">
-      <input type="text" placeholder="Sök efter plats" @keyup.enter="setFilter" v-model="locationSearch">  
+      <input type="text" placeholder="Sök efter fisk" @keydown.enter="setFilter" v-model="fishSearch" class="inputs">
+      <input type="text" placeholder="Sök efter plats" @keydown.enter="setFilter" v-model="locationSearch" class="inputs">  
       </div>    
-      <button class="Search" @click="setFilter"> Sök</button>
+       <button class="Search" @click="setFilter"> Sök</button> 
       <button class="addEvent" @click="showAddEvent"> Skapa nytt event</button>
   </div>
 </template>
@@ -36,7 +36,7 @@ methods: {
   })
 
 this.$emit("filteredEvents", this.filteredList);
-   document.querySelector(".seeEvent").scrollIntoView({behavior: "smooth"});
+  // document.querySelector(".seeEvent").scrollIntoView({behavior: "smooth"});
 }
 
 }

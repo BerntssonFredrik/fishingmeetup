@@ -15,15 +15,17 @@ it("should emit addAttendee whit correct params if all inputs are valid", async 
 
     wrapper.vm.addAttendee()
     expect(wrapper.emitted().addAttendee[0]).toEqual([{"attendeeName": "Fredrik Berntsson",  "attendeeNr": "123"}])
-})
+});
+it("should not emit addAttendee if inputs are empty", async () => {
+    const mockStore = { dispatch: jest.fn() };
+  const wrapper = shallowMount(AddAttendee, {
+    mocks: { $store: mockStore },
+  });
 
-/* it("should not emit addAttendee if inputs are empty", async () => {
-    
-    const wrapper = shallowMount(AddAttendee)
-    const button = wrapper.find("button")
+    const button = wrapper.find(".joinButton")
 
     await button.trigger("click") 
+   
+    expect(mockStore.dispatch).not.toHaveBeenCalledWith('addAttandee');
 
-    wrapper.vm.addAttendee()
-    expect(wrapper.emitted().addAttendee[0]).not.toHaveBeenCalled()
-}) */
+}) 

@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper_AddEvent">
+    <Nav class="nav" />
     <section class="addEvent">
       <h1>Skapa nytt event</h1>
       <ul class="eventUl">
@@ -39,7 +40,9 @@
 </template>
 
 <script>
+import Nav from "@/components/Nav"
 export default {
+  components: {Nav},
   data() {
     return {
       input: {
@@ -77,6 +80,12 @@ export default {
   justify-content: center;
   height: 100vh;
 }
+.nav {
+  position: absolute;
+  top: 0;
+  left:0;
+
+ }
 .addEvent {
   background-color: $dark;
   display: flex;

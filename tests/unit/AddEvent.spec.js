@@ -63,16 +63,15 @@ describe("test for AddEvent component", () => {
     //expect(mockStore.spy).toHaveBeenCalledWith(route);
   });
 });
-/* it("Should not complete action if any input is empty", async () => {
+ it("Should not complete action if any input is empty", async () => {
      
-    const router = new VueRouter({
-      routes: [{ path: '/home', name: 'home' }],
-    });
+  const localVue = createLocalVue().use(VueRouter);
+  const router = new VueRouter({ routes });
   const  mockStore = {
-  
+  // spy: jest.spyOn(router, "push"),
       dispatch: jest.fn(),
     },
-    wrapper = shallowMount(AddEvent, {
+    wrapper = mount(AddEvent, {
       localVue,
       router,
       mocks: { $store: mockStore },
@@ -81,16 +80,15 @@ describe("test for AddEvent component", () => {
           return events;
         },
       },
-
-    });
-
+      
+    })  
+   // const route = "/";
     const addButton = wrapper.find(".addButton");
     
   
         await addButton.trigger("click")
         await wrapper.vm.$nextTick();
-    expect(mockStore.dispatch).toHaveBeenCalled()
-  })  
-
+    expect(mockStore.dispatch).not.toHaveBeenCalled()
+   // expect(mockStore.spy).toHaveBeenCalledWith(route);
 })
- */
+ 
