@@ -30,7 +30,7 @@
         </li>
         <li class="eventLi">
           <label for="info">Information:</label>
-          <input type="text" class="info" id="info" v-model="input.info" maxlength="100"/>
+          <input type="text" class="info" id="info" v-model="input.info" maxlength="150"/>
         </li>
       </ul>
 
